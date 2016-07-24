@@ -70,7 +70,7 @@ KSMCTL () {
 
 committed_memory () {
     local pidlist
-    pidlist=$(pgrep -f -d ' ' '^qemu-system.*-enable-kvm')
+    pidlist=$(pgrep -f -d ' ' 'qemu-system.*accel=kvm')
     if [ -n "$pidlist" ]; then
         ps -p "$pidlist" -o rsz=
     fi | awk '{ sum += $1 }; END { print 0+sum }'
